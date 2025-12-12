@@ -1,0 +1,296 @@
+# TEAM 마미손 — 서비스명 HelloWorld / 임산부 케어 & 빅데이터 추천 서비스
+
+> 웨어러블 바이탈과 빅데이터분석으로 개인화된 부부연동 임신케어 플랫폼 서비스
+
+<br>
+
+## 📑 목차
+1. [프로젝트 소개](#-프로젝트-소개)
+2. [주요 기능](#-주요-기능)
+3. [주요 화면 및 기능 소개](#-주요-화면-및-기능-소개)
+4. [주요 기술](#-주요-기술)
+5. [기술 스택](#-기술-스택)
+6. [시스템 아키텍처](#%EF%B8%8F-시스템-아키텍처)
+7. [팀원 정보](#-팀원-정보)
+
+<br>
+
+## 📋 프로젝트 소개
+
+<img src="assets/helloworld_icon.png" height="500" />
+
+**HelloWorld** 는 임산부의 일상 기록과 가족 연동을 중심으로, **주차별/상태별 맞춤 추천**을 제공하는 케어 서비스입니다.  
+산모/남편(보호자) 일기, 캘린더, 초음파·음식 사진 등 **미디어를 안전하게 저장**하고 공유합니다.  
+초음파 이미지는 **DALL·E-3 캐리커처**로 변환해 추억을 남길 수 있으며, 모든 미디어는 **S3 Presigned URL**로 안전하게 전송됩니다.
+
+### 프로젝트 정보
+
+| 항목 | 내용 |
+| --- | --- |
+| 팀명 | 마미손 |
+| 서비스명 | HelloWorld |
+| 개발 기간 | 2025.08 ~ 2025.09 (6주) |
+| 개발 인원 | 6명 / Android(2), Backend(2), BigData(1), DevOps/Infra(1) |
+
+<br>
+
+## 주요 기능
+
+### 1. 주차별 맞춤 가이드
+
+- **임신 주차별 맞춤 정보 제공**
+    
+    임신 주차에 따라 매일 추천되는 음식 리스트를 확인할 수 있습니다. 산모의 영양 균형과 태아 발달 단계에 맞춘 식단으로 건강한 임신 생활을 돕습니다.
+    
+- **태아·산모 변화 리포트**
+    
+    각 주차별로 태아의 성장 과정과 산모의 신체적 변화를 리포트 형식으로 제공합니다. 사용자는 주차별로 어떤 변화가 일어나는지 직관적으로 확인할 수 있습니다.
+    
+- **발달 단계 기반 루틴 추천**
+    
+    태아의 발달 상황을 고려하여 산모에게 적합한 생활 루틴(가벼운 운동, 수면 관리, 식습관 등)을 자동 추천합니다.
+    
+
+---
+
+### 2. 웨어러블 기반 실시간 추천
+
+- **웨어러블 데이터 연동**
+    
+    스마트워치 웨어러블 기기에서 심박수, 스트레스 지수 데이터를 실시간으로 수집합니다.
+    
+    걸음 수 데이터는 헬스 커넥트를 연동하여 삼성 헬스에 기록된 걸음 수를 12시, 16시, 20시 총 3번 수집합니다.
+    
+- **이상 탐지 및 맞춤형 제안**
+    
+    특정 수치가 정상 범위를 벗어나면 이상 탐지를 수행하고, 산모의 상태에 맞는 맞춤형 추천을 제공합니다.
+    
+- **추천 콘텐츠 예시**
+    - 스트레스가 높을 때: 심호흡 가이드, 명상 비디오, 편안한 음악 추천
+    - 활동량이 부족할 때: 가벼운 요가 루틴, 산책 가능한 주변 장소 추천
+    - 심박수가 상승할 때: 심호흡 가이드, 명상 비디오, 요가 비디오 추천
+    - 심박수가 저하될 때: 심호흡 가이드, 음악, 나들이 장소 추천
+
+---
+
+### 3. 부부 연동 기능
+
+- **초대 코드 기반 연동**
+    
+    앱 내에서 제공되는 초대 코드를 통해 배우자 계정을 연동할 수 있습니다.
+    
+- **공유되는 데이터**
+    
+    산모의 주차별 리포트, 웨어러블 기반 측정 데이터, 기록된 일상 등이 부부 간에 실시간으로 공유되어 함께 임신 여정을 관리할 수 있습니다.
+    
+- **파트너 알림**
+    
+    이상 탐지 시 부부 모두에게 알림이 전송되어 즉각적인 대응이 가능하도록 지원합니다.
+    
+
+---
+
+### 4. 데일리 기록 & 초음파 캐리커처
+
+- **데일리 기록 관리**
+    
+    매일 체중, 혈압, 혈당 등을 기록할 수 있으며, 이를 기반으로 맞춤 리포트와 통계가 제공됩니다.
+    
+- **초음파 이미지 업로드 & 캐리커처 생성**
+    
+    사용자가 초음파 사진을 업로드하면 **DALL·E-3 모델**이 해당 이미지를 귀엽고 따뜻한 캐리커처로 변환합니다.
+    
+- **저장 및 공유**
+    
+    변환된 이미지는 **AWS S3**에 저장되며, 앱에서는 **Presigned URL**을 통해 안전하게 불러와 사용자에게 제공됩니다. 가족·지인과 공유할 수 있어 추억을 더욱 특별하게 남길 수 있습니다.
+    
+
+### 5. 알림 시스템 (FCM 기반)
+
+- **위험 감지 알림**
+    
+    심박수·스트레스 지수 등 생체 데이터가 위험 수준을 벗어날 경우, FCM(Firebase Cloud Messaging)을 통해 산모와 배우자에게 즉시 알림을 발송합니다.
+    
+- **일정 알림**
+    
+    검진일, 주차별 주요 이벤트, 기록 알림 등을 푸시 알림으로 제공하여 중요한 일정을 놓치지 않도록 돕습니다.
+    
+- **맞춤형 알림**
+    
+    이상 감지뿐 아니라, 생활 패턴(운동 부족, 스트레스 누적 등)에 따라 개인화된 알림을 제공하여 산모의 건강한 생활을 지원합니다.
+
+<br>
+
+## 🚀 주요 화면 및 기능 소개
+
+
+### 1. 온보딩 & 홈
+- 주차 설정, 홈 대시보드(오늘의 할 일/리포트/알림)
+
+<p align="left">
+  <img src="assets/helloworld_onboarding.gif" height="500" />
+  <img src="assets/helloworld_home.png" height="500" />
+</p>
+
+### 2. 일기 작성 & 미디어 업로드
+- 텍스트 + 사진(다중) 업로드 → **S3 Presigned 업로드** 진행
+
+<p align="left">
+  <img src="assets/helloworld_mother_diary.png" height="500" />
+  <img src="assets/helloworld_father_diary.jpg" height="500" />
+</p>
+
+### 3. 초음파 캐리커처
+- 초음파 이미지 선택 → **DALL·E-3 API** 호출 → 결과 미리보기 및 저장
+
+<p align="left">
+  <img src="assets/helloworld_ultrasound.gif" height="500" />
+</p>
+
+### 4. 캘린더 & 체크리스트
+- 일정 등록, 주차별 체크리스트 자동 생성/완료 처리
+
+<p align="left">
+  <img src="assets/helloworld_register.gif" height="500" />
+</p>
+
+### 5. 가족 연동
+- 초대코드로 연동, 활동 피드와 댓글
+
+<p align="left">
+  <img src="assets/helloworld_momcode.gif" height="500" />
+  <img src="assets/helloworld_code.gif" height="500" />
+</p>
+
+### 6. 맞춤형 추천
+- 주차별로 임산부가 하면 좋은 각종 루틴, 리포트, 음식 등을 추천
+
+<p align="left">
+  <img src="assets/helloworld_routine_recommend.gif" height="500" />
+  <img src="assets/helloworld_report_recommend.gif" height="500" />
+  <img src="assets/helloworld_food_recommend.gif" height="500" />
+</p>
+
+### 7. 건강 데이터 모니터링
+- 혈당, 체중, 활동량 등 주요 지표를 한눈에 확인할 수 있는 대시보드를 제공
+
+<p align="left">
+  <img src="assets/helloworld_information.gif" height="500" />
+</p>
+
+
+<br>
+
+## 🔬 주요 기술
+
+<details>
+<summary><strong>S3 Presigned URL 업/다운로드</strong></summary>
+
+- **업로드**: 앱이 백엔드에 업로드 요청 → 서버가 S3 **PUT** Presigned URL 발급 → 앱이 URL로 직접 업로드  
+- **다운로드**: 서버가 **GET** Presigned URL 발급 → 앱이 서명 URL로 즉시 다운로드  
+- 장점: 서버 부하/트래픽 절감, 대용량 안정성, 권한 제어 명확
+- 백엔드: Java 17 / Spring Boot, AWS SDK for Java v2
+</details>
+
+<details>
+<summary><strong>DALL·E-3 캐리커처 파이프라인</strong></summary>
+
+- 업로드된 초음파 이미지 → 프롬프트 가공 → **DALL·E-3** 이미지 생성  
+- 생성 이미지를 S3에 저장하고 앱에는 **Presigned URL** 전달  
+- 실패/시간초과 대응, 재시도/웹훅(선택) 설계
+</details>
+
+<details>
+<summary><strong>CI/CD & Observability</strong></summary>
+
+- **Jenkins + Kaniko**: 코드 변경 서비스만 **이미지 빌드/푸시** → k3s에 **RollingUpdate** 배포  
+- **Traefik + cert-manager**: Ingress/TLS 자동화  
+- **Prometheus/Grafana/Loki**: 지표/로그/알람. 배포 시간, 에러율, 지연 시간 대시보드 운영  
+- 결과: 서비스(Deploy) **1m18s → 58s**, 메모리 튜닝(OOM 방지) 후 안정성↑
+</details>
+
+<details>
+<summary><strong>개인화 추천 알고리즘</strong></summary>
+
+- **이상탐지**: 사용자의 데이터를 4시간 간격으로 버킷화 한 후, 버킷 기준값으로 z-score 기준 이상 탐지 
+- **Contextual Thmopson Sampling**: 컨텐츠를 수집 후, 사용자의 정보(context)를 반영하여 가중치를 주고, thompson sampling 기법으로 탐색과 활용을 반복하며 추천 알고리즘을 고도화
+- **추천 컨텐츠**: youtube API, spotify API, meteo weather API를 통해 사용자의 상태를 고려한 컨텐츠 수집 후 알고리즘 기반 추천
+
+</details>
+
+<details>
+<summary><strong>웨어러블 데이터 수집</strong></summary>
+
+- **심박수**: Health Services API를 사용하여 10초 간격으로 심박수 측정
+- **걸음수**: Health Connect를 통해 Samsung Health에 기록된 걸음수 수집
+- **스트레스 수치**: 최근 심박수 데이터로 HRV 지표를 계산 후, 가중치를 추합해 스트레스 수치 측정
+
+</details>
+
+<br>
+
+# 📚 기술 스택
+
+## 📱 Android
+- **Kotlin** 2.0.0 / **Android SDK** 35  
+- **Jetpack**: Compose, DataStore, Lifecycle, Navigation  
+- **Hilt(DI)**, **Retrofit/OkHttp**, **Firebase(FCM)**  
+
+---
+
+## ⚙️ Backend
+- **Java (OpenJDK)** 17  
+- **Spring Boot** 3.5.5, **REST API**  
+- **JPA**  
+- **S3 Presigned** API, **OpenAI(DALL·E-3)** 연동  
+- **Microsoft Service Architecture**
+- DB: **PostgreSQL** 16.10  
+- IDE: IntelliJ IDEA 2025.02.01
+- OAUTH 2.0 , 
+- Json Web Token
+---
+
+## ☁️ Infra & DevOps
+- **AWS EC2** (k3s 단일/멀티 노드)
+- **Docker / Docker Hub / k3s**
+- **Jenkins + Kaniko** (컨테이너 빌드/푸시)
+- **Helm**, **Traefik**, **cert-manager**
+- **Prometheus / Grafana / Loki / k6**
+- **GitLab** (SCM)
+
+---
+
+## 🧩 Collaboration
+- Git / GitLab / Jira / Figma / Discord / Notion / Mattermost
+
+<br>
+
+## 🏗️ 시스템 아키텍처
+
+![architecture](assets/helloworld_arch.png)
+
+> Android ↔ Spring Boot(API) ↔ S3/DB  
+> Jenkins(Kaniko) → Docker Hub → k3s(Helm) → Traefik/Ingress  
+> Prometheus/Grafana/Loki 로 **배포/지연/에러율** 가시화
+
+<br>
+
+## 👨‍👩‍👧‍👦 팀원 정보
+
+| 🧑‍💻 이름 | 🏆 역할 | ✉️ 이메일 |
+|---|---|---|
+| 최윤수 | 팀장, Android |  gews300255@gmail.com |
+| 이상헌 | Android | rntehr2@naver.com |
+| 송진우 | DevOps/Backend 보조 | rkddkwl059@naver.com |
+| 정보균 | Backend | a01071521583@gmail.com |
+| 홍은솔 | Backend | eunsolhh@gmail.com |
+| 최혜정 | BigData | hhaa0423@gmail.com |
+
+<br>
+
+## 📎 부록
+- [ERD](https://www.erdcloud.com/d/AAFYetJsXD6wbeZff)
+- [API 명세](https://www.notion.so/API-261b8bebd93a802cac7af64894acbfde)
+- [대시보드 샷](assets/helloworld_grafana.png)
+- [Figma](https://www.figma.com/design/bb6lEz4gMiUPYgojDH7ahQ/D204-%ED%8A%B9%ED%99%94%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0-1&p=f&t=tQR18bzMntOYVA85-0)
+
