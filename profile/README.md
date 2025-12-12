@@ -17,7 +17,7 @@
 
 ## 📋 프로젝트 소개
 
-<img src="assets/helloworld_icon.png" height="500" />
+<img height="300" alt="Image" src="https://github.com/user-attachments/assets/4f4251d9-6aec-4a7d-bd93-ecefc44fc38e" />
 
 **HelloWorld** 는 임산부의 일상 기록과 가족 연동을 중심으로, **주차별/상태별 맞춤 추천**을 제공하는 케어 서비스입니다.  
 산모/남편(보호자) 일기, 캘린더, 초음파·음식 사진 등 **미디어를 안전하게 저장**하고 공유합니다.  
@@ -128,54 +128,54 @@
 - 주차 설정, 홈 대시보드(오늘의 할 일/리포트/알림)
 
 <p align="left">
-  <img src="assets/helloworld_onboarding.gif" height="500" />
-  <img src="assets/helloworld_home.png" height="500" />
+  <img src="https://github.com/user-attachments/assets/10299b74-df51-41ae-9ad3-888bc8a30bf4" height="500" />
+  <img src="https://github.com/user-attachments/assets/4c24254e-184e-45eb-a227-5d7fc9af29d0" height="500" />
 </p>
 
 ### 2. 일기 작성 & 미디어 업로드
 - 텍스트 + 사진(다중) 업로드 → **S3 Presigned 업로드** 진행
 
 <p align="left">
-  <img src="assets/helloworld_mother_diary.png" height="500" />
-  <img src="assets/helloworld_father_diary.jpg" height="500" />
+  <img src="https://github.com/user-attachments/assets/16982e31-c5d4-476a-8720-93df98ca7181" height="500" />
+  <img src="https://github.com/user-attachments/assets/7c26679e-e09d-4a85-b8db-76b9a3a6b09f" height="500" />
 </p>
 
 ### 3. 초음파 캐리커처
 - 초음파 이미지 선택 → **DALL·E-3 API** 호출 → 결과 미리보기 및 저장
 
 <p align="left">
-  <img src="assets/helloworld_ultrasound.gif" height="500" />
+  <img src="https://github.com/user-attachments/assets/62095494-35cf-4d89-acc0-bb65fa5ffbf3" height="500" />
 </p>
 
 ### 4. 캘린더 & 체크리스트
 - 일정 등록, 주차별 체크리스트 자동 생성/완료 처리
 
 <p align="left">
-  <img src="assets/helloworld_register.gif" height="500" />
+  <img src="https://github.com/user-attachments/assets/27e3ed5f-1af7-41b8-b9dd-008e36f1c74d" height="500" />
 </p>
 
 ### 5. 가족 연동
 - 초대코드로 연동, 활동 피드와 댓글
 
 <p align="left">
-  <img src="assets/helloworld_momcode.gif" height="500" />
-  <img src="assets/helloworld_code.gif" height="500" />
+  <img src="https://github.com/user-attachments/assets/8ef0a976-0a5f-49c7-8f21-6922179e7b9c" height="500" />
+  <img src="https://github.com/user-attachments/assets/f62e88a3-5f9f-414f-be06-163e088d76b6" height="500" />
 </p>
 
 ### 6. 맞춤형 추천
 - 주차별로 임산부가 하면 좋은 각종 루틴, 리포트, 음식 등을 추천
 
 <p align="left">
-  <img src="assets/helloworld_routine_recommend.gif" height="500" />
-  <img src="assets/helloworld_report_recommend.gif" height="500" />
-  <img src="assets/helloworld_food_recommend.gif" height="500" />
+  <img src="https://github.com/user-attachments/assets/3022e8a0-37c2-41a7-9533-40bc159dba19" height="500" />
+  <img src="https://github.com/user-attachments/assets/3e53bc47-709d-4d35-a9cf-f3021bad9d2f" height="500" />
+  <img src="https://github.com/user-attachments/assets/b62f3ebd-e981-443b-b5a5-58629ce6f6ac" height="500" />
 </p>
 
 ### 7. 건강 데이터 모니터링
 - 혈당, 체중, 활동량 등 주요 지표를 한눈에 확인할 수 있는 대시보드를 제공
 
 <p align="left">
-  <img src="assets/helloworld_information.gif" height="500" />
+  <img src="https://github.com/user-attachments/assets/b7324f24-2fa4-4248-b77a-4eedb022bfdd" height="500" />
 </p>
 
 
@@ -267,7 +267,7 @@
 
 ## 🏗️ 시스템 아키텍처
 
-![architecture](assets/helloworld_arch.png)
+<img width="16375" height="8592" alt="Image" src="https://github.com/user-attachments/assets/b68cc3de-25c9-4242-8f4a-8601051eae65" />
 
 > Android ↔ Spring Boot(API) ↔ S3/DB  
 > Jenkins(Kaniko) → Docker Hub → k3s(Helm) → Traefik/Ingress  
